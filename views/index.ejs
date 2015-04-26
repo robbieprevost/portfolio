@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css'>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+  <script src="/javascripts/angular.js"></script>
+  <script src="/javascripts/angular-route.js"></script>
+  <script src="/javascripts/app.js"></script>
+</head>
+<body ng-controller="myController" ng-init="workers.init()">
+<header>
+  <div id="home" ng-click="workers.homeTitleClick()">
+    <span id="homeText">home</span>
+    <span id="homeIcon"><i class="fa fa-home"></i></span>
+  </div>
+  <!--<div id="about" ng-click="workers.aboutTitleClick()">-->
+  <!--<span id="aboutText">about</span>-->
+  <!--<span id="aboutIcon"><i class="fa fa-user"></i></span>-->
+  <!--</div>-->
+  <div id="widgets" ng-click="workers.widgetsTitleClick()">
+    <span id="widgetsText">widgets</span>
+    <span id="widgetsIcon"><i class="fa fa-puzzle-piece"></i></span>
+  </div>
+  <div id="contact" ng-click="workers.contactTitleClick()">
+    <span id="contactText">contact</span>
+    <span id="contactIcon"><i class="fa fa-envelope-o"></i></span>
+  </div>
+</header>
+<div id="middle">
+  <div id="homeMiddle" ng-show="data.home">
+    <!--<p><strong>welcome to my site.</strong></p>-->
+    <!--<p>where your dreams become reality...</p>-->
+    <!--<p>haha, thanks for visiting.</p>-->
+    <!--<p>feel free to poke around.</p>-->
+    <!--<div id="aboutButton" ng-click="workers.aboutTitleClick()"><strong>about</strong></div>-->
+    <!--<div id="widgetsButton" ng-click="workers.widgetsTitleClick()"><strong>widgets</strong></div>-->
+    <!--<div id="contactButton" ng-click="workers.contactTitleClick()"><strong>contact</strong></div>-->
+    <!--</div>-->
+    <!--<div id="aboutMiddle" ng-show="data.about">-->
+    <div id="profilePicContainer">
+      <img id="profilePic" src="/images/profile1.png" alt="profile pic" width="70px" height="110px">
+      <div id="profilePicOverlay"></div>
+    </div>
+    <div id="aboutTextContainer">
+      <br>
+      <p><strong>about me</strong></p>
+      <br>
+      <p>my name is robbie prevost.</p>
+      <br>
+      <p>i'm a web developer looking to get started working on your awesome projects.
+        <br><br>
+        i have been teaching myself to write code for the last four years.
+        <br><br>
+        i built an android app avaiable on the amazon app store called <a href="http://www.amazon.com/Esnomali-Games-Chinese-Bubble-Free/dp/B00H88BRZY" target="_blank">chinese bubble pop</a>.
+        <br><br>
+        i have worked with Java, Python, Lua, Flash/ActionScript, and JavaScript.
+        <br><br>
+        recently, my main focus has been learning the ins and outs of the MEAN stack.
+        <br><br>
+        just about everything i build now uses Node.js, Express.js, MongoDB, and AngularJS.
+        <br><br>
+        i have also worked with Backbone.js and want to learn more about Ember.js.</p>
+      <br>
+      <p><strong>various certifications i've earned </strong></p>
+      <ul>
+        <li>CIW JavaScript Specialist - September 2014</li>
+        <li>CIW Web Design Specialist - July 2014</li>
+        <li>CIW Web Foundations Associate - 2014</li>
+        <li>CompTIA A+ - June 2014</li>
+        <li>MTA Windows Operating System Fundamentals - October 2014 </li>
+      </ul>
+      <br>
+      <p><strong>you can find me on github</strong></p>
+      <p><a href="https://github.com/robbieprevost" target="_blank">robbieprevost</a></p>
+    </div>
+  </div>
+  <div id="widgetsMiddle" ng-show="data.widgets">
+    <div id="weatherTextButton" ng-show="data.widgetsHome" ng-click="workers.weather()">
+      <strong id="weatherButtonText">check the weather</strong>
+    </div>
+    <div id="weatherIconButton" ng-show="data.widgetsHome" ng-click="workers.weather()">
+      <strong id="weatherButtonIcon"><i class="fa fa-cloud"></i></strong>
+    </div>
+    <div id="weatherCheck" ng-show="data.weather">
+      <form>
+        <h1>get your local weather conditions</h1>
+        <input type="text" ng-model="data.weatherZip" placeholder="enter a zip code">
+        <button class="btn btn-lg btn-default" ng-click="workers.getWeather()">submit</button>
+        <p class="weather-error" ng-show="data.weatherError">No cities match your search query</p>
+      </form>
+      <div id="weather-info" ng-show="data.weatherResults.temp != undefined">
+        <img ng-src="{{data.weatherResults.img}}" alt="weather-image">
+        <span>{{data.weatherResults.city}}</span>
+        <h3>{{data.weatherResults.temp}}</h3>
+        <h2>{{data.weatherResults.conditions}}</h2>
+        <h5>powered by <a href="http://www.wunderground.com/" target="_blank">Weather Underground</a>.</h5>
+      </div>
+    </div>
+    <div id="amazonTextButton" ng-show="data.widgetsHome" ng-click="workers.amazon()">
+      <strong id="amazonButtonText">amazon search+</strong>
+    </div>
+    <div id="amazonIconButton" ng-show="data.widgetsHome" ng-click="workers.amazon()">
+      <strong id="amazonButtonIcon"><i class="fa fa-shopping-cart"></i>+</strong>
+    </div>
+    <br>
+    <h1 ng-show="data.widgetsHome"><strong>more coming soon...</strong></h1>
+    <div id="amazonShoppingPlus" ng-show="data.amazon">
+      <div id="amazonSearch" ng-show="data.amazonSearch">
+        <form id="amazonSearchInput">
+          <h1>enhanced amazon search</h1>
+          <input id="amazonSearchTextInput" type="text" ng-model="data.amazonSearchTerm" placeholder="search amazon.com">
+          <button class="btn btn-lg btn-default" ng-click="workers.amazonSearch()">submit</button>
+          <p class="amazon-error" ng-show="data.amazonError">no results available</p>
+        </form>
+        <div id="amazonResults" ng-show="data.amazonResults != undefined">
+          <div id="amazonResult" ng-repeat="result in data.amazonResults" ng-click="workers.amazonResult(result)">
+            <div id="amazonResultContainer">
+              <div id="amazonImageContainer">
+                <img id="amazonResultImgLg" ng-show="result.ImageSets.ImageSet[0].LargeImage.URL"
+                     ng-src="{{result.ImageSets.ImageSet[0].LargeImage.URL}}"
+                     alt="{{result.ItemAttributes.Title}}" width="60px" height="60px">
+                <img id="amazonResultImgMd" ng-show="result.ImageSets.ImageSet[0].MediumImage.URL"
+                     ng-src="{{result.ImageSets.ImageSet[0].MediumImage.URL}}"
+                     alt="{{result.ItemAttributes.Title}}" width="60px" height="60px">
+              </div>
+              <div id="amazonTitleContainer">
+                <p id="amazonResultTitle" ><strong>{{result.ItemAttributes.Title}}</strong></p>
+                <!--<h3>{{result.ASIN}}</h3>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="amazonResultDetails" ng-show="data.amazonResultDetails">
+        <br>
+        <p id="amazonDetailsTitle">
+          <strong>{{data.amazonResult.ItemAttributes.Title}}</strong>
+          <br>
+          <strong>{{data.amazonResult.ItemAttributes.ListPrice.FormattedPrice}}</strong>
+        </p>
+        <div id="amazonResultImageContainer">
+          <img id="amazonResultDetailsImgLg" ng-show="data.amazonResultMainImage"
+               ng-src="{{data.amazonResultMainImage}}"
+               alt="{{data.amazonResult.ItemAttributes.Title}}" width="300px" height="250px">
+          <div id="amazonResultDetailsImgLgOverlay"></div>
+        </div>
+        <div class="amazonDetailsAltImageContainer" ng-repeat="image in data.amazonResult.ImageSets.ImageSet">
+          <img class="altImage" ng-src="{{image.LargeImage.URL}}" alt="alt image" width="100px" height="100px" ng-show="image.LargeImage.URL">
+          <div class="amazonDetailsImgOverlay" ng-click="workers.amazonResultAltImage(image.LargeImage.URL)"></div>
+        </div>
+        <div id="amazonDetailsFeatures">
+          <ul ng-repeat="feature in data.amazonResult.ItemAttributes.Feature">
+            <li class="feature">
+              &#8226;&nbsp;&nbsp;{{feature}}
+            </li>
+          </ul>
+        </div>
+        <br>
+        <a class="btn btn-lg btn-warning" href="{{data.amazonResult.DetailPageURL}}" target="_blank">
+          <strong>Buy it now!</strong>
+        </a>
+        <br><br>
+        <strong>Related YouTube videos:</strong>
+        <div class="video" ng-repeat="video in data.youtubeIds" ng-show="data.youtubeIds[0].id">
+          <iframe width="500" height="400" ng-src="{{video.id}}" ng-show="video.id"></iframe>
+        </div>
+        <p ng-show="data.youtubeIds[0].id == undefined">No related YouTube videos.</p>
+      </div>
+    </div>
+  </div>
+  <div id="contactsMiddle" ng-show="data.contact">
+    <div id="contactContent">
+      <p><strong>Feel free to hit me up.</strong></p>
+      <p><strong>Email: </strong> <a href="mailto:robbieprevost@gmail.com" target="_blank">robbieprevost@gmail.com</a></p>
+      <p><strong>Twitter: </strong><a href="https://twitter.com/robbieprevost" target="_blank">@robbieprevost</a></p>
+      <p><strong>Facebook: </strong><a href="https://facebook.com/robbieprevost" target="_blank">robbie prevost</a></p>
+      <p><strong>LinkedIn: </strong><a href="https://www.linkedin.com/profile/view?id=195933072" target="_blank">Robbie Prevost</a></p>
+    </div>
+  </div>
+</div>
+<button id="amazonBackButton" class="btn btn-lg btn-default"
+        ng-click="workers.amazonBack()" ng-show="data.amazonResultDetails"><i class="fa fa-arrow-left"></i></button>
+</body>
+</html>

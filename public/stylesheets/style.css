@@ -1,0 +1,465 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  width: 100%;
+  height: 100%;
+  background-color: #dfdfdf;
+  color: #0f0f0f;
+  text-align: center;
+}
+
+
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 10%;
+}
+@media (min-width: 700px) {
+  #home, #widgets, #contact {
+    float: left;
+    margin: 0 3.1667%;
+    width: 27%;
+    height: 100%;
+    background-color: #f9f9f9;
+    -webkit-box-shadow: 0 0 10px #000000;
+    -moz-box-shadow: 0 0 10px #000000;
+    box-shadow: 0 0 10px #000000;
+    -webkit-transition: height .2s, font-size .2s, margin .2s, padding-left .2s; /* Safari */
+    transition: height .2s, font-size .2s, margin .2s, padding-left .2s;
+    text-align: center;
+    font-family: 'Josefin Slab', serif;
+    font-size: 32px;
+    font-weight: 700;
+    padding-top: 5px;
+    padding-left: .25%;
+  }
+
+  #homeText, #aboutText, #widgetsText, #contactText {
+    visibility: visible;
+    font-size: 32px;
+  }
+
+  #homeIcon, #aboutIcon,#widgetsIcon, #contactIcon {
+    visibility: hidden;
+    font-size: 0;
+  }
+
+  #home:hover, #about:hover, #widgets:hover, #contact:hover {
+    height: 125%;
+    font-size: 44px;
+    margin: 0 3.1667%;
+    padding-left: .5%;
+  }
+
+  #middle {
+    width: 90%;
+    height: 80%;
+    background-color: #f9f9f9;
+    -webkit-box-shadow: 0 0 10px #000000;
+    -moz-box-shadow: 0 0 10px #000000;
+    box-shadow: 0 0 10px #000000;
+    position: absolute;
+    font-family: 'Josefin Slab', serif;
+    font-size: 32px;
+    font-weight: 400;
+    top: 15%;
+    left: 5%;
+  }
+
+  #weatherTextButton, #amazonTextButton {
+    position: relative;
+    visibility: visible;
+    font-size: 32px;
+  }
+
+  #weatherTextButton:hover, #amazonTextButton:hover {
+    font-size: 35px;
+  }
+
+  #weatherIconButton, #amazonIconButton {
+    position: absolute;
+    height: 0;
+    visibility: hidden;
+  }
+
+  #amazonResult {
+    position: relative;
+    margin: 12px auto;
+    width: 80%;
+    height: 120px;
+    overflow: hidden;
+    clear: both;
+    box-shadow: 0 5px 10px #666666;
+    padding-top: 14px;
+    background-color: #eeeeef;
+    font-size: 20px;
+  }
+  #amazonResult:hover {
+    height: 125px;
+    font-size: 22px;
+  }
+
+  #amazonResultImageContainer {
+    position: relative;
+    margin: 0 auto;
+    width: 30%;
+    height: 60%;
+    overflow: hidden;
+  }
+  #amazonResultDetailsImgLg, #amazonResultDetailsImgMd {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #amazonResultDetailsImgLgOverlay, #amazonResultDetailsImgMdOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 5px #000000;
+  }
+
+  .amazonDetailsAltImageContainer {
+    position: relative;
+    padding: 10px;
+    width: 20%;
+    height: 40%;
+    margin: 2% auto;
+    float: left;
+  }
+}
+
+
+
+@media (max-width: 699px) {
+  #home, #about, #widgets, #contact {
+    float: left;
+    margin: 0 3.1667%;
+    width: 27%;
+    height: 100%;
+    background-color: #f9f9f9;
+    -webkit-box-shadow: 0 0 10px #000000;
+    -moz-box-shadow: 0 0 10px #000000;
+    box-shadow: 0 0 10px #000000;
+    -webkit-transition: height .2s, font-size .2s, margin .2s, padding-right .2s; /* Safari */
+    transition: height .2s, font-size .2s, margin .2s, padding-right .2s;
+    text-align: center;
+    font-family: 'Josefin Slab', serif;
+    font-size: 32px;
+    padding-top: 5px;
+    padding-right: 2%;
+  }
+
+  #homeText, #aboutText, #widgetsText, #contactText {
+    visibility: hidden;
+    font-size: 0;
+  }
+
+  #homeIcon, #aboutIcon,#widgetsIcon, #contactIcon {
+    visibility: visible;
+    font-size: 32px;
+
+  }
+
+  #home:hover, #about:hover, #widgets:hover, #contact:hover {
+    height: 125%;
+    font-size: 44px;
+    padding-right: 2.5%;
+  }
+
+  #middle {
+    width: 90%;
+    height: 80%;
+    background-color: #f9f9f9;
+    -webkit-box-shadow: 0 0 10px #000000;
+    -moz-box-shadow: 0 0 10px #000000;
+    box-shadow: 0 0 10px #000000;
+    position: absolute;
+    font-family: 'Josefin Slab', serif;
+    font-size: 32px;
+    font-weight: 400;
+    top: 15%;
+    left: 5%;
+  }
+
+  #weatherTextButton, #amazonTextButton {
+    position: absolute;
+    visibility: hidden;
+    font-size: 0;
+    height: 0;
+  }
+
+  #weatherIconButton, #amazonIconButton {
+    position: relative;
+    visibility: visible;
+    font-size: 32px;
+  }
+
+  #weatherIconButton:hover, #weatherIconButton:hover {
+    font-size: 35px;
+  }
+
+
+  #amazonResult {
+    position: relative;
+    margin: 12px auto;
+    width: 90%;
+    height: 185px;
+    overflow: hidden;
+    clear: both;
+    box-shadow: 0 5px 10px #666666;
+    padding-top: 14px;
+    background-color: #eeeeef;
+    font-size: 20px;
+  }
+  #amazonResult:hover {
+    height: 210px;
+    font-size: 22px;
+  }
+  #amazonResultImageContainer {
+    position: relative;
+    margin: 0 auto;
+    width: 40%;
+    height: 40%;
+    overflow: hidden;
+  }
+  #amazonResultDetailsImgLg, #amazonResultDetailsImgMd {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #amazonResultDetailsImgLgOverlay, #amazonResultDetailsImgMdOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 5px #000000;
+  }
+
+
+  .amazonDetailsAltImageContainer {
+    position: relative;
+    padding: 10px;
+    width: 20%;
+    height: 15%;
+    margin: 2% auto;
+    float: left;
+  }
+}
+
+#homeMiddle {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+#profilePicContainer{
+  width: 70px;
+  height: 120px;
+  border-radius: 50px 50px 50px 50px;
+  margin: 10px auto;
+  clear: none;
+  position: relative;
+}
+
+#profilePic, #profilePicOverlay {
+  border-radius: 50px 50px 50px 50px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+#profilePicOverlay {
+  width: 70px;
+  height: 110px;
+  box-shadow: inset 0 0 10px #000000;
+}
+
+#aboutButton, #widgetsButton, #contactButton {
+  width: 200px;
+  height: 70px;
+  box-shadow: 0 5px 10px #666666;
+  padding-top: 14px;
+  margin: 12px auto;
+  background-color: #eeeeef;
+}
+
+#aboutButton:hover, #widgetsButton:hover, #contactButton:hover {
+  width: 210px;
+  height: 75px;
+  font-size: 35px;
+}
+
+
+#aboutMiddle {
+  height: 100%;
+  font-size: 24px;
+  overflow: auto;
+  word-wrap: break-word;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#aboutTextContainer {
+  padding: 5px;
+  padding-top: 0;
+}
+
+#widgetsMiddle {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding-top: 1.5em;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+#weatherTextButton, #amazonTextButton {
+  width: 300px;
+  height: 70px;
+  box-shadow: 0 5px 10px #666666;
+  padding-top: 14px;
+  padding-bottom: 5px;
+  margin: 12px auto;
+  background-color: #eeeeef;
+}
+
+#weatherTextButton:hover, #amazonTextButton:hover {
+  width: 310px;
+  height: 75px;
+  font-size: 35px;
+}
+
+#weatherIconButton, #amazonIconButton {
+  width: 200px;
+  height: 70px;
+  box-shadow: 0 5px 10px #666666;
+  padding-top: 14px;
+  margin: 12px auto;
+  background-color: #eeeeef;
+}
+
+#weatherIconButton:hover, #amazonIconButton:hover {
+  width: 210px;
+  height: 75px;
+  font-size: 35px;
+}
+
+#weather-info {
+  padding: 15px;
+}
+
+#contactMiddle {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  padding-top: 1.5em;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+#contactContent {
+  margin: 2.5%;
+  padding-top: 20px;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+
+a:hover {
+  text-decoration: none;
+}
+
+#amazonShoppingPlus {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+#amazonResultImgLg, #amazonResultImgMd, #amazonResultTitle {
+  padding: 5px;
+  float: left;
+}
+
+#amazonImageContainer {
+  box-shadow: inset 0 0 10px #666666;
+  position: absolute;
+  left: 10px;
+}
+
+#amazonTitleContainer {
+  text-align: left;
+  position: absolute;
+  left: 80px;
+}
+
+#amazonSearch, #amazonResultDetails {
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+#amazonSearchInput {
+  margin-top: 50px;
+}
+
+#amazonSearchTextInput {
+  width: 300px;
+  height: 60px;
+  padding-left: 10px;
+}
+
+#amazonBackButton {
+  position: absolute;
+  top: 110px;
+  left: 8%;
+  width: 50px;
+  height: 50px;
+}
+
+#amazonDetailsTitle {
+  margin: 25px auto;
+}
+
+.feature {
+  margin: 10px auto;
+  padding-left: 10px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.altImage, .amazonDetailsImgOverlay {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  width: 90%;
+  height: 90%;
+  box-shadow: inset 0 0 5px #000000;
+}
+
+#amazonDetailsFeatures {
+  clear: both;
+  margin: 0 auto;
+}
+
+
