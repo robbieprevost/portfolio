@@ -27,6 +27,14 @@ var myApp = angular.module('myApp', ['ngRoute']).factory('socket', function ($ro
         'self',
         // Allow loading from our assets domain.  Notice the difference between * and **.
         'https://www.youtube.com/**']);
+}).directive('myAdSense', function() {
+    return {
+        restrict: 'A',
+        transclude: true,
+        replace: true,
+        template: '<div ng-transclude></div>',
+        link: function ($scope, element, attrs) {}
+    }
 });
 
 var myController = myApp.controller('myController', function($scope, $rootScope, socket){
